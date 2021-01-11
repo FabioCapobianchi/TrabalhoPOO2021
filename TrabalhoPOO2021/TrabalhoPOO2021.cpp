@@ -19,10 +19,10 @@ int main() {
     Territ_Inic* empire = new Territ_Inic;
 
     cout << "\n             ====================="
-        << "\n             ==    Bem Vindo    =="
-        << "\n             ==       ao        =="
-        << "\n             ==     IMPERIO     =="
-        << "\n             =====================\n";
+         << "\n             ==    Bem Vindo    =="
+         << "\n             ==       ao        =="
+         << "\n             ==     IMPERIO     =="
+         << "\n             =====================\n";
 
 
     Interaccao interaccao(mundo, empire);
