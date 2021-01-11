@@ -50,10 +50,12 @@ public:
     void opcaoConquistarTerritorio(string pesquisa);
     bool mudaNome(string s);
     string uninome(string a, string b);
-    void animacao(int vd);
     void recursoabandonado();
     int invasao();
     int alianca();
+    void inicio();
+    void fim();
+    void animacao(int vd);
 };
 
 #endif /* INTERACCAO_H */

@@ -18,14 +18,15 @@ int main() {
     Mundo* mundo = new Mundo;
     Territ_Inic* empire = new Territ_Inic;
 
-    cout << "\n             ====================="
-         << "\n             ==    Bem Vindo    =="
-         << "\n             ==       ao        =="
-         << "\n             ==     IMPERIO     =="
-         << "\n             =====================\n";
-
-
+    //cout << "\n             ====================="
+    //     << "\n             ==    Bem Vindo    =="
+    //     << "\n             ==       ao        =="
+    //     << "\n             ==     IMPERIO     =="
+    //     << "\n             =====================\n";
     Interaccao interaccao(mundo, empire);
+
+    interaccao.inicio();
+
     do
     {
         i = interaccao.menu();
@@ -51,6 +52,7 @@ int main() {
 
     delete mundo;
     delete empire;
+    interaccao.fim();
     cout << "aqui";
 }
 

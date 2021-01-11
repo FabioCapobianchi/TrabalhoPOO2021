@@ -800,6 +800,32 @@ int Interaccao::alianca() {
 	return 0;
 }
 
+void Interaccao::inicio() {
+	cout << "     ##   ###     ###  ######   ######  ######   ##  ######\n";
+	Sleep(300);
+	cout << "     ##   ####   ####  ##   ##  ##      ##   ##  ##  ##  ##\n";
+	Sleep(300);
+	cout << "     ##   ## ## ## ##  ######   ####    ######   ##  ##  ##\n";
+	Sleep(300);
+	cout << "     ##   ##   #   ##  ##       ##      ##   ##  ##  ##  ##\n";
+	Sleep(300);
+	cout << "     ##   ##       ##  ##       ######  ##   ##  ##  ######\n"; 
+	Sleep(300);
+
+}
+
+void Interaccao::fim() {
+	cout << "\n\n\n          ######   ##   ###     ###\n";
+	Sleep(300);
+	cout << "          ##       ##   ####   ####\n";
+	Sleep(300);
+	cout << "          ####     ##   ## ## ## ##\n";
+	Sleep(300);
+	cout << "          ##       ##   ##   #   ##\n";
+	Sleep(300);
+	cout << "          ##       ##   ##       ##\n";
+}
+
 void Interaccao::animacao(int vd) {
 
 	system("cls");
