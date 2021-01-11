@@ -50,7 +50,7 @@ int main() {
             }
             else
             {
-                cout << "\n !!!! Não é possivel utilizar esse comando nessa fase ou foi mal digitado !!!!\n"
+                cout << "\n !!!! Não é possivel utilizar esse comando nessa fase ou foi mal digitado !!!!\n";
 
             }
 
