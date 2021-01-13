@@ -24,54 +24,21 @@ int main() {
     Interaccao interaccao(mundo, empire);
 
     interaccao.inicio();
-    //fase de comandos
+ 
+    //int opcaoModificaOuro(){
 
+    //    if (imperio->getCofre() < imperio->getMaxcofre()) {
+    //        imperio->setCofre(qut);
+    //    }
+    //}
+    //
+    //int opcaoModificaProd(){
+    //
+    //    if (imperio->getArmazem() < imperio->getMaxarmazem()) {
+    //        imperio->setArmazem(qut);
+    //    }
+    //}
 
-    cout << "\n\n >>>> Introduza um Comando: \n";
-    fseek(stdin, 0, SEEK_END);
-    getline(cin, cmdo);
-    istringstream iss(cmdo);
-    iss >> cmd1;
-    if (cmd1 == "modifica" || cmd1 == "sair") {
-        if (cmd1 == "modifica") {
-            iss >> tp >> qut;
-            if (!iss) {
-                cout << "\n !!!! Faltam parametros para o comando modifica !!!! \n";
-                cout << "\n !!!! Exemplo modifica ouro 2 !!!! \n";
-
-            }
-            if (cmd1 == "modifica" && tp == "ouro") {
-               // opcaoModificaOuro(qut);
-                cout << "\n !!!! modifica ouro !!!!\n";
-            }
-            else if (cmd1 == "modifica" && tp == "prod") {
-                //opcaoModificaProd(qut);
-                cout << "\n !!!! modifica prod!!!!\n";
-            }
-            else
-            {
-                cout << "\n !!!! Não é possivel utilizar esse comando nessa fase ou foi mal digitado !!!!\n";
-
-            }
-
-        }
-    }
-    /*
-    int opcaoModificaOuro(){
-
-        if (imperio->getCofre() < imperio->getMaxcofre()) {
-            imperio->setCofre(qut);
-        }
-    }
-    
-    int opcaoModificaProd(){
-    
-        if (imperio->getArmazem() < imperio->getMaxarmazem()) {
-            imperio->setArmazem(qut);
-        }
-    }
-
-    */
 
     do
     {
@@ -79,10 +46,6 @@ int main() {
         if(i == 1)
         {
             i = interaccao.menuFrecolha(); 
-        }
-        if (i == 1)
-        {
-            i = interaccao.menuFrecolha();
         }
         if (i == 1)
         {

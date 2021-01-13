@@ -89,7 +89,8 @@ int Interaccao::menu() {
 		getline(cin, cmdo);
 		istringstream iss(cmdo);
 		iss >> cmd1;
-		if (cmd1 == "cria" || cmd1 == "carrega" || cmd1 == "lista" || cmd1 == "conquista" || cmd1 == "passa" || cmd1 == "sair") {
+		if (cmd1 == "cria" || cmd1 == "carrega" || cmd1 == "lista" || cmd1 == "conquista" 
+		|| cmd1 == "passa" || cmd1 == "sair" || cmd1 == "toma" || cmd1 == "modifica") {
 			if (cmd1 == "cria") {
 				iss >> tp >> qut;
 				if (!iss) {
@@ -106,6 +107,18 @@ int Interaccao::menu() {
 			if (!iss) {
 				cout << "\n !!!! Faltam parametros para o comando conquista !!!! \n";
 				cout << "\n !!!! Exemplo conquista duna_2//castelo_3 !!!! \n";
+				opcao = 5;
+			}
+			else {
+				opcaoConquistarTerritorio(tp);
+				opcao = 5;
+			}
+		}else
+			  if (cmd1 == "modifica") {
+			iss >> tp;
+			if (!iss) {
+				cout << "\n !!!! Faltam parametros para o comando modifica !!!! \n";
+				cout << "\n !!!! Exemplo modifica ouro//prod !!!! \n";
 				opcao = 5;
 			}
 			else {
