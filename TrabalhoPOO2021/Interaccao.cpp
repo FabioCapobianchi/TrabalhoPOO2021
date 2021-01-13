@@ -78,9 +78,9 @@ int Interaccao::menu() {
 	int nalet = 0;
 	int qut = 0;
 
-	cout << "\n      ====================================\n";
-	cout << "\n  ==== Fase configuracao//conquista//passa ====\n";
-	cout << "\n      ====================================\n\n";
+	cout << "\n          ######################################\n";
+	cout << "\n      #### Fase configuracao //conquista//passa ####\n";
+	cout << "\n          ######################################\n\n";
 	Sleep(3000);
 	
 	do {
@@ -155,9 +155,9 @@ int Interaccao::menu() {
 		}
 
 	} while (opcao != 3);
-	cout << "\n      ===========================================\n";
-	cout << "\n  ==== Fim da Fase configuracao//conquista//passa ====\n";
-	cout << "\n      ===========================================\n\n";
+	cout << "\n     ############################################\n";
+	cout << "\n #### Fim da Fase configuracao//conquista//passa ####\n";
+	cout << "\n     ############################################\n\n";
 	return 1;
 }
 
@@ -169,19 +169,19 @@ int Interaccao::menuFrecolha() {
 	int flag = 2, flag1 = 2;
 
 	Sleep(1500);
-	cout << "\n      =============================\n";
-	cout << "\n  ==== Fase de recolha de producao ====\n";
-	cout << "\n      =============================\n";
+	cout << "\n     #############################\n";
+	cout << "\n #### Fase de recolha de producao ####\n";
+	cout << "\n     #############################\n";
 	opcaoRecolha();
 	Sleep(3000);
 	cout << imperio->getAsString() << endl;
-	cout << "\n ==== Foram recolhidos ouro e produtos de todos territorios do imperio ====\n\n";
+	cout << "\n#### Foram recolhidos ouro e produtos de todos territorios do imperio####\n\n";
 
 	if (imperio->getBolsa() == true){
 		   
-		cout << "\n      ============ Bolsa de Valores ===========\n\n";
-		cout << "\n ==== Se dispor de recursos pode efetuar trocas ====\n"; 
-		cout << "\n        ==== Digite passar para passar ====\n";
+		cout << "\n     ############ Bolsa de Valores##########=\n\n";
+		cout << "\n#### Se dispor de recursos pode efetuar trocas####\n"; 
+		cout << "\n       #### Digite passar para passar####\n";
 		Sleep(1500);
 		do {
 				cout << "\n >>>> Digite um Comando:  \n";
@@ -190,7 +190,7 @@ int Interaccao::menuFrecolha() {
 				
 				if (aux1 == "passa") {
 					opcao = 17;
-					cout << "\n\n ==== Fim da fase de recolha ====\n\n";
+					cout << "\n\n#### Fim da fase de recolha####\n\n";
 				}
 
 				if (aux1 == "maisouro" && flag == 2) {
@@ -209,7 +209,7 @@ int Interaccao::menuFrecolha() {
 				}
 				else
 				{
-					cout << "\n ==== maisouro//maisprod ====\n";
+					cout << "\n#### maisouro//maisprod####\n";
 				}
 			switch (opcao) {
 
@@ -238,16 +238,16 @@ int Interaccao::menuFrecolha() {
 			break;
 			}
 			if (flag != 2 && flag1 != 2) {
-				cout << "\n\n ========== Fim da fase de recolha ==========\n\n";
+				cout << "\n\n     ########## Fim da fase de recolha ##########\n\n";
 				opcao = 17;
 			}
 		} while (opcao != 17);
 	}
 	else
 	{
-		cout << "\n !!!! Nao possui a Bolsa de Valores para efetuar trocas !!!!\n";
-		cout << "\n\n ========== Fim da fase de recolha ==========\n";
-		cout <<   "\n    ======================================\n\n";
+		cout << "\n     !!!! Nao possui a Bolsa de Valores para efetuar trocas !!!!\n";
+		cout << "\n\n     ##########  Fim da fase de recolha  ##########\n";
+		cout <<   "\n          ####################################\n\n";
 	}
 	return 1;
 }
@@ -258,9 +258,9 @@ int Interaccao::menuFcompra() {
 	string tipo;
 	int opcao = 0;
 	int flag = 2, flag1 = 0;
-	cout << "\n      ===================================================\n";
-	cout << "\n  ==== Fase de Compra de unidades militares e tecnologia ====\n";
-	cout << "\n      ===================================================\n";
+	cout << "\n          ###################################################\n";
+	cout << "\n      #### Fase de Compra de unidades militares e tecnologia ####\n";
+	cout << "\n          ###################################################\n";
 	Sleep(3000);
 
 	do {
@@ -367,9 +367,9 @@ int Interaccao::menuFcompra() {
 			opcao = 17;
 		}
 	} while (opcao != 17);
-	cout << "\n      =========================================================\n";
-	cout << "\n  ==== Fim da fase de Compra de unidades militares e tecnologia ====\n";
-	cout << "\n      =========================================================\n\n";
+	cout << "\n          ##########################################################\n";
+	cout << "\n      #### Fim da fase de Compra de unidades militares e tecnologia ####\n";
+	cout << "\n          ##########################################################\n\n";
 	return 1;
 }
 
@@ -379,9 +379,9 @@ int Interaccao::menuFeventos() {
 	opcao = intUniformRnd(1, 4);
 
 
-	cout << "\n      ================\n";
-	cout << "\n  ==== Fase de Eventos ====\n";
-	cout << "\n      ================\n\n";
+	cout << "\n          #################\n";
+	cout << "\n      #### Fase de Eventos ####\n";
+	cout << "\n          #################\n\n";
 	Sleep(3000);
 
 	switch (opcao) {
@@ -395,8 +395,8 @@ int Interaccao::menuFeventos() {
 	{
 		fim = invasao();
 		if (fim == 0) {
-			cout << "\n !!!! O imperio nao possui territorios para ser conquistados !!!!\n";
-			cout << "****************** O IMPERIO foi destruido ************************\n";
+			cout << "\n       !!!! O imperio nao possui territorios para ser conquistados !!!!\n";
+			cout << "\n     ****************** O IMPERIO foi destruido ************************\n";
 			return 0;
 			exit(0);
 		}
@@ -426,9 +426,9 @@ int Interaccao::menuFeventos() {
 		return 0;
 	}
 	
-	cout << "\n      ================\n";
-	cout << "\n  ==== Fim de Eventos ====\n";
-	cout << "\n      ================\n\n";
+	cout << "\n     ################\n";
+	cout << "\n #### Fim de Eventos ####\n";
+	cout << "\n     ################\n\n";
 
 	return 1;
 }
@@ -758,7 +758,7 @@ int Interaccao::opcaoAdquireBanco() {
 }
 
 void Interaccao::recursoabandonado() {
-	cout << "\n ==== As tropas emcontraram um recurso abandonado ====\n";
+	cout << "\n#### As tropas emcontraram um recurso abandonado####\n";
 	if (getAno() == 1) {
 		if (imperio->getArmazem() < imperio->getMaxarmazem()) {
 			imperio->setArmazem(1);
@@ -801,29 +801,31 @@ int Interaccao::alianca() {
 }
 
 void Interaccao::inicio() {
-	cout << "     ##   ###     ###  ######   ######  ######   ##  ######\n";
+	
+	cout << endl;
+	cout << "   ##   ###     ###  ######   ######  ######   ##  ######\n";
 	Sleep(300);
-	cout << "     ##   ####   ####  ##   ##  ##      ##   ##  ##  ##  ##\n";
+	cout << "   ##   ####   ####  ##   ##  ##      ##   ##  ##  ##  ##\n";
 	Sleep(300);
-	cout << "     ##   ## ## ## ##  ######   ####    ######   ##  ##  ##\n";
+	cout << "   ##   ## ## ## ##  ######   ####    ######   ##  ##  ##\n";
 	Sleep(300);
-	cout << "     ##   ##   #   ##  ##       ##      ##   ##  ##  ##  ##\n";
+	cout << "   ##   ##   #   ##  ##       ##      ##   ##  ##  ##  ##\n";
 	Sleep(300);
-	cout << "     ##   ##       ##  ##       ######  ##   ##  ##  ######\n"; 
+	cout << "   ##   ##       ##  ##       ######  ##   ##  ##  ######\n"; 
 	Sleep(300);
 
 }
 
 void Interaccao::fim() {
-	cout << "\n\n\n          ######   ##   ###     ###\n";
+	cout << "\n\n\n            ######   ##   ###     ###\n";
 	Sleep(300);
-	cout << "          ##       ##   ####   ####\n";
+	cout << "            ##       ##   ####   ####\n";
 	Sleep(300);
-	cout << "          ####     ##   ## ## ## ##\n";
+	cout << "            ####     ##   ## ## ## ##\n";
 	Sleep(300);
-	cout << "          ##       ##   ##   #   ##\n";
+	cout << "            ##       ##   ##   #   ##\n";
 	Sleep(300);
-	cout << "          ##       ##   ##       ##\n";
+	cout << "            ##       ##   ##       ##\n";
 }
 
 void Interaccao::animacao(int vd) {
@@ -831,7 +833,7 @@ void Interaccao::animacao(int vd) {
 	system("cls");
 	Sleep(800);
 	cout << "\n";
-	cout << ">===>                                  ###  ###  ###\n";
+	cout << ">###>                                  ###  ###  ###\n";
 	cout << "                                       ###  ###  ###\n";
 	cout << "                                       #############\n";
 	cout << "                                       #############\n";
@@ -839,7 +841,7 @@ void Interaccao::animacao(int vd) {
 	Sleep(800);
 	system("cls");
 	cout << "\n";
-	cout << "     >===>                             ###  ###  ###\n";
+	cout << "     >###>                             ###  ###  ###\n";
 	cout << "                                       ###  ###  ###\n";
 	cout << "                                       #############\n";
 	cout << "                                       #############\n";
@@ -847,7 +849,7 @@ void Interaccao::animacao(int vd) {
 	Sleep(800);
 	system("cls");
 	cout << "\n";
-	cout << "          >===>                        ###  ###  ###\n";
+	cout << "          >###>                        ###  ###  ###\n";
 	cout << "                                       ###  ###  ###\n";
 	cout << "                                       #############\n";
 	cout << "                                       #############\n";
@@ -855,7 +857,7 @@ void Interaccao::animacao(int vd) {
 	Sleep(800);
 	system("cls");
 	cout << "\n";
-	cout << "                >===>                  ###  ###  ###\n";
+	cout << "                >###>                  ###  ###  ###\n";
 	cout << "                                       ###  ###  ###\n";
 	cout << "                                       #############\n";
 	cout << "                                       #############\n";
@@ -863,7 +865,7 @@ void Interaccao::animacao(int vd) {
 	Sleep(800);
 	system("cls");
 	cout << "\n";
-	cout << "                     >===>             ###  ###  ###\n";
+	cout << "                     >###>             ###  ###  ###\n";
 	cout << "                                       ###  ###  ###\n";
 	cout << "                                       #############\n";
 	cout << "                                       #############\n";
@@ -872,7 +874,7 @@ void Interaccao::animacao(int vd) {
 	system("cls");
 	cout << "\n";
 	cout << "                                       ###  ###  ###\n";
-	cout << "                         >===>         ###  ###  ###\n";
+	cout << "                         >###>         ###  ###  ###\n";
 	cout << "                                       #############\n";
 	cout << "                                       #############\n";
 	cout << "                                       #############\n";
@@ -881,7 +883,7 @@ void Interaccao::animacao(int vd) {
 	cout << "\n";
 	cout << "                                       ###  ###  ###\n";
 	cout << "                                       ###  ###  ###\n";
-	cout << "                               >===>   #############\n";
+	cout << "                               >###>   #############\n";
 	cout << "                                       #############\n";
 	cout << "                                       #############\n";
 	Sleep(800);
@@ -890,7 +892,7 @@ void Interaccao::animacao(int vd) {
 	cout << "                                       ###  ###  ###\n";
 	cout << "                                       ###  ###  ###\n";
 	cout << "                                       #############\n";
-	cout << "                                   >===#############\n";
+	cout << "                                   >################\n";
 	cout << "                                       #############\n";
 	if (vd == 1) {
 		Sleep(800);

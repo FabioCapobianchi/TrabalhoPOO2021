@@ -47,8 +47,7 @@ int main() {
 
     delete mundo;
     delete empire;
-    interaccao.fim();
-    cout << "aqui";
+    interaccao.fim();                  
 }
 
 
