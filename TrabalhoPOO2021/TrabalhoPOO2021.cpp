@@ -25,21 +25,6 @@ int main() {
 
     interaccao.inicio();
  
-    //int opcaoModificaOuro(){
-
-    //    if (imperio->getCofre() < imperio->getMaxcofre()) {
-    //        imperio->setCofre(qut);
-    //    }
-    //}
-    //
-    //int opcaoModificaProd(){
-    //
-    //    if (imperio->getArmazem() < imperio->getMaxarmazem()) {
-    //        imperio->setArmazem(qut);
-    //    }
-    //}
-
-
     do
     {
         i = interaccao.menu();

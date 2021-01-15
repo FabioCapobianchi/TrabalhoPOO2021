@@ -31,8 +31,6 @@ Interaccao::Interaccao(Mundo * aq, Territ_Inic * empire):ano(1),turno(1){
 	imperio = empire;
 }
 
-
-
 int Interaccao::verificaCom(vector<string> cm, string t) {
 	int cont = 0;
 	for (vector<string>::const_iterator it = cm.begin();
@@ -72,19 +70,19 @@ void Interaccao::setEvent(string event) {
 
 int Interaccao::menu() {
 
-	string cmdo,cmd1,tp;
+	string cmdo,cmd1,tp,tecterr,tecaux;
 	char c;
 	int opcao = -1;
 	int nalet = 0;
 	int qut = 0;
 
-	cout << "\n          ######################################\n";
-	cout << "\n      #### Fase configuracao //conquista//passa ####\n";
-	cout << "\n          ######################################\n\n";
+	cout << "\n\n       #############################################";
+	cout <<  "\n   #### Fase configuracao //conquista//passa//lista ####";
+	cout <<  "\n       #############################################\n\n";
 	Sleep(3000);
 	
 	do {
-		cout << "\n\n >>>> Digite um Comando: \n";
+		cout << "\n\n Digite um comando >>>> : \n";
 		fseek(stdin, 0, SEEK_END);
 		getline(cin, cmdo);
 		istringstream iss(cmdo);
@@ -101,7 +99,29 @@ int Interaccao::menu() {
 				else {
 					opcaoAcrescentarTerritorio(tp, qut);
 				}
-			}else 
+			}
+			else if (cmd1 == "toma") {
+				iss >> tp >> tecterr ;
+				if (!iss) {
+					cout << "\n !!!! Faltam parametros para o comando toma !!!! \n";
+					cout << "\n !!!! Exemplo toma tec/terr tipo !!!! \n";
+					opcao = 5;
+				}
+				else
+				{
+					if (tp == "tec") {
+						iss >> tecaux;
+						tecterr += " " + tecaux;
+						opcaoTomaTec(tecterr);
+						opcao = 5;
+
+					}if (tp == "terr") {
+						opcaoTomaTerr(tecterr);
+						opcao = 5;
+					}
+				}
+			}
+			else 
 				if (cmd1 == "conquista") {
 			iss >> tp ;
 			if (!iss) {
@@ -121,22 +141,25 @@ int Interaccao::menu() {
 				cout << "\n !!!! Exemplo modifica ouro//prod !!!! \n";
 				opcao = 5;
 			}
-			else {
-				opcaoConquistarTerritorio(tp);
-				opcao = 5;
+			else
+			{
+				if (tp == "ouro") {
+					opcaoModificaOuro();
+					opcao = 5;
+				}
+				if (tp == "prod") {
+					opcaoModificaProd();
+					opcao = 5;
+				}
 			}
-		}
-
-		else {
+		}else {
 			opcao = verificaCom(comandos, cmdo);//Verifica se o comando existe ou foi escrito corretamente
 		}
-		}
-		else
+	}else
 		{
-			cout << "\n !!!! Não é possivel utilizar esse comando nessa fase ou foi mal digitado !!!!\n";
+			cout << "\n !!!! Comando nao existe ou foi mal digitado !!!!\n";
 			opcao = 5;
 		}
-
 
 		switch (opcao) {
 
@@ -146,7 +169,6 @@ int Interaccao::menu() {
 
 		}
 		break;
-	
 		case 8: // <Lista>  Mostra no ecra a Informa��o do territorio inicial e dos territorios do mundo
 		{   
 			do {
@@ -158,7 +180,7 @@ int Interaccao::menu() {
 				 opcaoListarTerritorio(c);
 		}
 		break;
-		case 16: // saur
+		case 16: // sair
 		{   
 			
 			return 0;
@@ -168,9 +190,9 @@ int Interaccao::menu() {
 		}
 
 	} while (opcao != 3);
-	cout << "\n     ############################################\n";
-	cout << "\n #### Fim da Fase configuracao//conquista//passa ####\n";
-	cout << "\n     ############################################\n\n";
+	cout << "\n          ############################################";
+	cout << "\n      #### Fim da Fase configuracao//conquista//passa ####";
+	cout << "\n          ############################################\n\n";
 	return 1;
 }
 
@@ -182,28 +204,28 @@ int Interaccao::menuFrecolha() {
 	int flag = 2, flag1 = 2;
 
 	Sleep(1500);
-	cout << "\n     #############################\n";
-	cout << "\n #### Fase de recolha de producao ####\n";
-	cout << "\n     #############################\n";
+	cout << "\n                 #############################";
+	cout << "\n             #### Fase de recolha de producao ####";
+	cout << "\n                 #############################\n";
 	opcaoRecolha();
 	Sleep(3000);
 	cout << imperio->getAsString() << endl;
-	cout << "\n#### Foram recolhidos ouro e produtos de todos territorios do imperio####\n\n";
+	cout << "\n    #### Foram recolhidos ouro e produtos de todos territorios do imperio ####\n\n";
 
 	if (imperio->getBolsa() == true){
 		   
-		cout << "\n     ############ Bolsa de Valores##########=\n\n";
-		cout << "\n#### Se dispor de recursos pode efetuar trocas####\n"; 
-		cout << "\n       #### Digite passar para passar####\n";
+		cout << "\n        ############# Bolsa de Valores#############";
+		cout << "\n    #### Se dispor de recursos pode efetuar trocas ####\n"; 
+		cout << "\n            #### Digite passar para passar ####\n";
 		Sleep(1500);
 		do {
-				cout << "\n >>>> Digite um Comando:  \n";
+				cout << "\n Digite um comando >>>> :  \n";
 				fseek(stdin, 0, SEEK_END);
-				cin >> aux1;	
-				
+				cin >> aux1;
+
 				if (aux1 == "passa") {
 					opcao = 17;
-					cout << "\n\n#### Fim da fase de recolha####\n\n";
+					cout << "\n\n     #### Fim da fase de recolha ####\n\n";
 				}
 
 				if (aux1 == "maisouro" && flag == 2) {
@@ -221,8 +243,8 @@ int Interaccao::menuFrecolha() {
 				
 				}
 				else
-				{
-					cout << "\n#### maisouro//maisprod####\n";
+				{  if(aux1 != "passa")
+					cout << "\n     #### maisouro//maisprod ####\n";
 				}
 			switch (opcao) {
 
@@ -271,8 +293,8 @@ int Interaccao::menuFcompra() {
 	string tipo;
 	int opcao = 0;
 	int flag = 2, flag1 = 0;
-	cout << "\n          ###################################################\n";
-	cout << "\n      #### Fase de Compra de unidades militares e tecnologia ####\n";
+	cout << "\n          ###################################################";
+	cout << "\n      #### Fase de Compra de unidades militares e tecnologia ####";
 	cout << "\n          ###################################################\n";
 	Sleep(3000);
 
@@ -380,8 +402,8 @@ int Interaccao::menuFcompra() {
 			opcao = 17;
 		}
 	} while (opcao != 17);
-	cout << "\n          ##########################################################\n";
-	cout << "\n      #### Fim da fase de Compra de unidades militares e tecnologia ####\n";
+	cout << "\n          ##########################################################";
+	cout << "\n      #### Fim da fase de Compra de unidades militares e tecnologia ####";
 	cout << "\n          ##########################################################\n\n";
 	return 1;
 }
@@ -392,8 +414,8 @@ int Interaccao::menuFeventos() {
 	opcao = intUniformRnd(1, 4);
 
 
-	cout << "\n          #################\n";
-	cout << "\n      #### Fase de Eventos ####\n";
+	cout << "\n          #################";
+	cout << "\n      #### Fase de Eventos ####";
 	cout << "\n          #################\n\n";
 	Sleep(3000);
 
@@ -422,7 +444,7 @@ int Interaccao::menuFeventos() {
 	break;
 	case 4:
 	{
-		cout << "\n !!!! Nao houve nenhum evento !!!!\n";
+		cout << "\n    !!!! Nao houve nenhum evento !!!!\n";
 		setEvent("Sem Evento");
 	}
 	}
@@ -439,9 +461,9 @@ int Interaccao::menuFeventos() {
 		return 0;
 	}
 	
-	cout << "\n     ################\n";
-	cout << "\n #### Fim de Eventos ####\n";
-	cout << "\n     ################\n\n";
+	cout << "\n         #####################";
+	cout << "\n     #### Fim fase de Eventos ####";
+	cout << "\n         #####################\n\n";
 
 	return 1;
 }
@@ -468,19 +490,25 @@ int Interaccao::verificaTipo(string t, vector<string> cm) {
 			return 1;
 		}cont++;
 	}
-	cout << "\n ****** Tipo nao existe ou foi mal Escrito. ******\n";
+	cout << "\n    ****** Tipo nao existe ou foi mal Escrito. ******\n";
 	return 0;
 }
 
 int Interaccao::verificaQuant(string qt) {
-	int  res = 1;
+	int  res = -1;
 	for (unsigned int i = 0; i < qt.size(); i++) {
 		if (qt[i] < '0' || qt[i]> '9')
 			res = 0;
 	}
-	if (res == 0)
-		cout << "\n ****** Numero Invalido ******\n";
-	return res;
+	if (res == 0) {
+		cout << "\n    ****** Numero Invalido ******\n";
+		return res;
+	}
+	else
+	{
+		res = stoi(qt);
+		return res;
+	}
 }
 
 
@@ -491,7 +519,6 @@ void Interaccao::opcaoAcrescentarTerritorio(string s, int qt){
 
 
 		flag = verificaTipo(s,ter);//verifica se o tipo existe
-		//flag1 = verificaQuant(qt);//verifica se a quantidade é um int;
 		if (flag == 1) {
 			for (i = 0; i < qt; i++) {
 				if (mundo->addTerritorio(s)) {
@@ -502,12 +529,10 @@ void Interaccao::opcaoAcrescentarTerritorio(string s, int qt){
 				cout << "\n >>>> Criado\\s: " << qt
 					<< " territorio\\s do tipo: " << s
 					<< " >>>>" << endl;
-
 			}
-			
 		}
 		else {
-			cout << "****** Tipo nao existe ******\n";
+			cout << "     ****** Tipo nao existe ******\n";
 		}
 }
 
@@ -517,13 +542,13 @@ void Interaccao::criadoficheiro() {
 	int qt = 0;
 	string comand,tipo, tipoaux;
 
-	cout << "\n >>>> Digite o nome do Ficheiro: ";
+	cout << "\n Digite o nome do Ficheiro >>>> : ";
 	cin >> tipoaux;
 
 	ifstream fich1(tipoaux);
 	if (!fich1) {
-		cout << "\n Ocorreu um erro ao abrir o Ficheiro: " << tipoaux
-			<< "\n Verifique se o nome esta correto Ex: XXXXXX.txt" << endl;
+		cout << "\n    !!!! Ocorreu um erro ao abrir o Ficheiro: " << tipoaux <<" !!!!"
+			<< "\n     !!!! Verifique se o nome esta correto Ex: XXXXXX.txt" << endl << " !!!!";
 		return;
 	}
 	while (!fich1.eof()) {
@@ -578,7 +603,7 @@ void Interaccao::opcaoPesquisarTerritorio(){
 	cin >> pesquisa;
 	const Territorio * p = mundo->verificavector(pesquisa,& res);
 	if (p == nullptr) {
-		cout << "\n****** Territorio escolhido nao existe ******\n";	
+		cout << "\n    ****** Territorio escolhido nao existe ******\n";	
 	}
 	else {
 		cout << endl << p->getAsString();
@@ -627,17 +652,66 @@ void Interaccao::opcaoConquistarTerritorio(string pesquisa) {
 	if (res <= imperio->getArmy() + armyale) {
 		imperio->conquiTerritorio(paux);
 		animacao(1);
-		cout << "\n !!!! Territorio Conquistado !!!!\n";
+		cout << "\n   !!!! Territorio Conquistado !!!!\n";
 		imperio->setPontos(1);
 		mundo->eliminaTerrit(pesquisa);
 
 	}else{
 		animacao(0);
-			cout << "\n****** Territorio Resistiu ao ataque ******\n";
+			cout << "\n      ****** Territorio Resistiu ao ataque ******\n";
 			imperio->setArmy(-1);
 		}
  }else
-	cout << "\n****** Territorio nao existe tente outra vez ******\n";
+	cout << "\n     ****** Territorio nao existe tente outra vez ******\n";
+}
+
+
+void Interaccao::opcaoTomaTerr(string pesquisa) {
+
+	int res;
+	Territorio* paux;
+
+	Territorio* p = mundo->verificavector(pesquisa, &res);
+
+	if (p != nullptr) {
+		paux = p;
+		if (imperio->conquiTerritorio(paux) == true) {
+			cout << "\n   !!!! Territorio Conquistado !!!!\n";
+			imperio->setPontos(1);
+			mundo->eliminaTerrit(pesquisa);
+			return;
+		}
+	}
+		cout << "\n     ****** Territorio nao existe tente outra vez ******\n";
+}
+
+void Interaccao::opcaoTomaTec(string terr){
+	int t = 0;
+	t = verificaTipo(terr, tec);
+	if (t == 1) {
+		if (terr == "drones militares") {
+			imperio->setDrones(1);
+			cout << "\n !!!! Drones Militares tomados de assalto !!!!\n";
+			return;
+		}if (terr == "misseis teleguiados") {
+			imperio->setMisseis(1);
+			cout << "\n !!!! Misseis Teleguiados tomados de assalto !!!!\n";
+			return;
+		}if (terr == "defesas territoriais") {
+			imperio->setDefesas(1);
+			cout << "\n !!!! Defesas Territoriais tomadas de assalto !!!!\n";
+			return;
+		}if (terr == "bolsa valores") {
+			imperio->setBolsa(1);
+			cout << "\n !!!! Bolsa Valores tomada de assalto !!!!\n";
+			return;
+		}if (terr == "banco central") {
+			return;
+			cout << "\n !!!! Banco central tomado de assalto !!!!\n";
+			imperio->setBankctr(1);
+		}
+	}
+	cout << "\n    !!!! Tecnologia nao existe ou foi mal digitada !!!!\n";
 }
 
 int Interaccao::opcaoMaisprod(){
@@ -647,16 +721,16 @@ int Interaccao::opcaoMaisprod(){
 			if (imperio->getCofre() >= 2) {
 				imperio->setCofre(-2);
 				imperio->setArmazem(1);
-				cout << "\n ---- Trocou 2 unidades de ouro por 1 de produtos ----\n";
+				cout << "\n    #### Trocou 2 unidades de ouro por 1 de produtos ####\n";
 				return 1;
 			}
 			else
 			{
-				cout << "\n !!!! Nao possui ouro suficientes para a troca !!!!\n";
+				cout << "\n    !!!! Nao possui ouro suficientes para a troca !!!!\n";
 				return 0;
 			}
 		}
-		cout << "\n !!!! O armazem esta no nivel maximo nao e possivel efetuar a troca !!!!\n";
+		cout << "\n     !!!! O armazem esta no nivel maximo nao e possivel efetuar a troca !!!!\n";
 		return 0;
 	}
 
@@ -666,7 +740,7 @@ int Interaccao::opcaoMaisouro(){
 		if (imperio->getArmazem() >= 2) {
 			imperio->setArmazem(-2);
 			imperio->setCofre(1);
-			cout << "\n ---- Trocou 2 unidades de produtos por 1 de ouro ----\n";
+			cout << "\n     #### Trocou 2 unidades de produtos por 1 de ouro ####\n";
 			return 1;
 		}
 		else
@@ -686,19 +760,19 @@ int Interaccao::opcaoMaismilitar() {
 			imperio->setCofre(-1);
 			imperio->setArmazem(-1);
 			imperio->setArmy(1);
-			cout << "\n Foi adicionada uma unidade militar\n";
+			cout << "\n #### Foi adicionada uma unidade militar ####\n";
 			return 1;
 		}
 		else
 		{
-			cout << "\n !!!! Nao possui ouro ou produtos suficientes para a troca !!!!\n";
+			cout << "\n    !!!! Nao possui ouro ou produtos suficientes para a troca !!!!\n";
 			return 0;
 		}
 	}
 	else
 	{
-		cout << "\n !!!! Nao foi possivel efetuar a compra  !!!!\n";
-		cout << "\n !!!! Capacidade militar no maximo possivel  !!!!\n";
+		cout << "\n    !!!! Nao foi possivel efetuar a compra  !!!!\n";
+		cout << "\n    !!!! Capacidade militar no maximo possivel  !!!!\n";
 		return 0;
 	}
 
@@ -716,6 +790,7 @@ int Interaccao::opcaoAdquireDrone() {
 			return 0;
 		}
 	}
+
 int Interaccao::opcaoAdquireMissil() {
 	if (imperio->getCofre() >= 4) {
 		imperio->setMisseis();
@@ -771,23 +846,23 @@ int Interaccao::opcaoAdquireBanco() {
 }
 
 void Interaccao::recursoabandonado() {
-	cout << "\n#### As tropas emcontraram um recurso abandonado####\n";
+	cout << "\n     #### As tropas emcontraram um recurso abandonado ####\n";
 	if (getAno() == 1) {
 		if (imperio->getArmazem() < imperio->getMaxarmazem()) {
 			imperio->setArmazem(1);
-			cout << "\n **** Foi encontrado uma unidade de produtos e foi guardado em armazem ****\n";
+			cout << "\n    **** Foi encontrado uma unidade de produtos e foi guardado em armazem ****\n";
 		}
 		else {
-			cout << "\n **** Foi encontrado uma unidade de produtos mas foi disperdicada ****\n";
+			cout << "\n    !!!! Foi encontrado uma unidade de produtos mas foi disperdicada !!!!\n";
 		}
 	}
 	if (getAno() == 2) {
 		if (imperio->getCofre() < imperio->getMaxcofre()) {
 			imperio->setCofre(1);
-			cout << "\n **** Foi encontrado uma unidade de ouro e foi guardado no cofre ****\n";
+			cout << "\n    **** Foi encontrado uma unidade de ouro e foi guardado no cofre ****\n";
 		}
 		else {
-			cout << "\n !!!! Foi encontrado uma unidade de ouro mas foi disperdicada !!!!\n";
+			cout << "\n    !!!! Foi encontrado uma unidade de ouro mas foi disperdicada !!!!\n";
 		}
 	}
 	setEvent("Recurso Abandonado");
@@ -804,41 +879,80 @@ int Interaccao::alianca() {
 	setEvent("Alianca Militar");
 	if (imperio->getArmy() < imperio->getMaxarmy()) {
 		imperio->setArmy(1);
-		cout << "\n !!!! Foi feita uma Alianca Militar !!!!\n";
-		cout << "\n !!!! Forca Militar mais uma unidade \n\n";
+		cout << "\n   !!!! Foi feita uma Alianca Militar !!!!\n";
+		cout << "\n   !!!! Forca Militar mais uma unidade \n\n";
 		return 1;
 	}
-	cout << "\n **** Foi feita uma Alianca Militar  ****\n";
-	cout << "\n **** Mas a Forca Militar nao suporta mais unidades ****\n\n";
+	cout << "\n          **** Foi feita uma Alianca Militar  ****\n";
+	cout << "\n   **** Mas a Forca Militar nao suporta mais unidades ****\n\n";
 	return 0;
+}
+
+int Interaccao::opcaoModificaOuro(){
+	int t;
+	string qt; 
+	
+	cout << "\n    !!!! Modifica ouro !!!!\n";
+	cout << "\n    Indique a quantidade >>>> : \n";
+	cin >> qt;
+	t = verificaQuant(qt);
+	
+	if (t > 0) {
+		if (imperio->getCofre() < imperio->getMaxcofre()) {
+			imperio->setCofre(t);
+			cout << "\n   !!!! Adicionado ao cofre " << t << " unidades de ouro !!!!\n";
+			return 1;
+		}
+	}
+		return 0;
+   }
+   
+   int Interaccao::opcaoModificaProd(){
+	   int t;
+	   string qt;
+	 
+	   cout << "\n    !!!! Modifica prod !!!!\n";
+	   cout << "\n    Indique a quantidade >>>> : \n";
+	   cin >> qt;
+	   t = verificaQuant(qt);
+	   
+	   if (t > 0) {
+       if (imperio->getArmazem() < imperio->getMaxarmazem()) {
+           imperio->setArmazem(t);
+		   cout << "\n   !!!! Adicionado ao armazem " << t << " unidades de prod !!!!\n";
+		   return 1;
+	   }
+	   }
+	 
+		   return 0;
 }
 
 void Interaccao::inicio() {
 	
 	cout << endl;
-	cout << "   ##   ###     ###  ######   ######  ######   ##  ######\n";
+	cout << "   ##  ###     ###  ######   ######  ######   ##  ######\n";
 	Sleep(300);
-	cout << "   ##   ####   ####  ##   ##  ##      ##   ##  ##  ##  ##\n";
+	cout << "   ##  ####   ####  ##   ##  ##      ##   ##  ##  ##  ##\n";
 	Sleep(300);
-	cout << "   ##   ## ## ## ##  ######   ####    ######   ##  ##  ##\n";
+	cout << "   ##  ## ## ## ##  ######   ####    ######   ##  ##  ##\n";
 	Sleep(300);
-	cout << "   ##   ##   #   ##  ##       ##      ##   ##  ##  ##  ##\n";
+	cout << "   ##  ##   #   ##  ##       ##      ##   ##  ##  ##  ##\n";
 	Sleep(300);
-	cout << "   ##   ##       ##  ##       ######  ##   ##  ##  ######\n"; 
+	cout << "   ##  ##       ##  ##       ######  ##   ##  ##  ######\n"; 
 	Sleep(300);
 
 }
 
 void Interaccao::fim() {
-	cout << "\n\n\n            ######   ##   ###     ###\n";
+	cout << "\n\n\n                ######   ##   ###     ###\n";
 	Sleep(300);
-	cout << "            ##       ##   ####   ####\n";
+	cout << "                ##       ##   ####   ####\n";
 	Sleep(300);
-	cout << "            ####     ##   ## ## ## ##\n";
+	cout << "                ####     ##   ## ## ## ##\n";
 	Sleep(300);
-	cout << "            ##       ##   ##   #   ##\n";
+	cout << "                ##       ##   ##   #   ##\n";
 	Sleep(300);
-	cout << "            ##       ##   ##       ##\n";
+	cout << "                ##       ##   ##       ##\n";
 }
 
 void Interaccao::animacao(int vd) {

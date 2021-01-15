@@ -56,15 +56,15 @@ public:
     void setArmy(int x);
     int getArmy()const;
     void setPontos(int pt);
-    void setDrones();
+    void setDrones(int i = 0);
     bool getDrones()const;
-    void setMisseis();
+    void setMisseis(int i = 0);
     bool getMisseis()const;
-    int setDefesas();
+    int setDefesas(int i = 0);
     bool getDefesa()const;
-    void setBolsa();
+    void setBolsa(int i = 0);
     bool getBolsa()const;
-    void setBankctr();
+    void setBankctr(int i = 0);
     bool getBankctr()const;
 };
 

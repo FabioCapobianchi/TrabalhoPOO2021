@@ -43,6 +43,8 @@ public:
     int opcaoAdquireDefesa();
     int opcaoAdquireBolsa();
     int opcaoAdquireBanco();
+    void opcaoTomaTec(string pesquisa);
+    void opcaoTomaTerr(string pesquisa);
     void opcaoAcrescentarTerritorio(string s, int qt);
     void criadoficheiro();
     void opcaoPesquisarTerritorio();
@@ -53,6 +55,8 @@ public:
     void recursoabandonado();
     int invasao();
     int alianca();
+    int opcaoModificaProd();
+    int opcaoModificaOuro();
     void inicio();
     void fim();
     void animacao(int vd);

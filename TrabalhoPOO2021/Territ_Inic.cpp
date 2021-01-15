@@ -188,42 +188,77 @@ int Territ_Inic::getArmazem()const {
     return armazem;
 }
 
-void Territ_Inic::setDrones() {
-    drones = true;
-    maxarmy = 5;
-    ouro1 -= 3;
+void Territ_Inic::setDrones(int i) {
+    if (i == 0) {
+        drones = true;
+        maxarmy = 5;
+        ouro1 -= 3;
+    }
+    else
+    {
+        drones = true;
+    }
 }
 bool Territ_Inic::getDrones()const {
     return drones;
 }
 
-void Territ_Inic::setMisseis() {
-    misseis = true;
-    ouro1 -= 4;
+void Territ_Inic::setMisseis(int i) {
+    if (i == 0) {
+        misseis = true;
+        ouro1 -= 4;
+    }
+    else
+    {
+        misseis = true;
+    }
+  
 }
 bool Territ_Inic::getMisseis()const {
     return misseis;
 }
-int Territ_Inic::setDefesas(){
-    defesas = true;
-    ouro1 -= 4;
-    return 1;
+int Territ_Inic::setDefesas(int i){
+    if (i == 0) {
+        defesas = true;
+        ouro1 -= 4;
+        return 1;
+    }
+    else
+    {
+        defesas = true;
+        return 1;
+    }
+   
 }
 bool Territ_Inic::getDefesa()const{
     return defesas;
 }
-void Territ_Inic::setBolsa() {
-    bolsa = true;
-    ouro1 -= 2;
+void Territ_Inic::setBolsa(int i) {
+    if (i == 0) {
+        bolsa = true;
+        ouro1 -= 2;
+    }
+    else
+    {
+        bolsa = true;
+    }
+   
 }
 bool Territ_Inic::getBolsa()const{
     return bolsa;
 }
-void Territ_Inic::setBankctr() {
-    bankctr = true;
-    maxcofre = 5;
-    maxarmaz = 5;
-    ouro1 -= 3;
+void Territ_Inic::setBankctr(int i) {
+    if (i == 0) {
+        bankctr = true;
+        maxcofre = 5;
+        maxarmaz = 5;
+        ouro1 -= 3;
+    }
+    else
+    {
+        bankctr = true;
+    }
+   
 }
 bool Territ_Inic::getBankctr()const {
     
