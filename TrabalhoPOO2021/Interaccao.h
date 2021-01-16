@@ -20,8 +20,6 @@ class Interaccao {
 public:
     Interaccao(Mundo * aq, Territ_Inic * empire);
     string getAsString()const;
-    //int lerInt(string msg);
-    //int escolheOpcao(vector<string> opcoes);
     int verificaQuant(string qt);
     int verificaTipo(string t, vector<string> cm);
     int verificaCom(vector<string> cm, string t);
@@ -33,7 +31,7 @@ public:
     int menu();
     int menuFrecolha();
     int menuFcompra();
-    int menuFeventos();
+    int menuFeventos(int i);
     void opcaoRecolha();
     int opcaoMaisouro();
     int opcaoMaisprod();

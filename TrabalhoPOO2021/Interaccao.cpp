@@ -87,8 +87,6 @@ int Interaccao::menu() {
 		getline(cin, cmdo);
 		istringstream iss(cmdo);
 		iss >> cmd1;
-		if (cmd1 == "cria" || cmd1 == "carrega" || cmd1 == "lista" || cmd1 == "conquista" 
-		|| cmd1 == "passa" || cmd1 == "sair" || cmd1 == "toma" || cmd1 == "modifica") {
 			if (cmd1 == "cria") {
 				iss >> tp >> qut;
 				if (!iss) {
@@ -155,11 +153,7 @@ int Interaccao::menu() {
 		}else {
 			opcao = verificaCom(comandos, cmdo);//Verifica se o comando existe ou foi escrito corretamente
 		}
-	}else
-		{
-			cout << "\n !!!! Comando nao existe ou foi mal digitado !!!!\n";
-			opcao = 5;
-		}
+
 
 		switch (opcao) {
 
@@ -408,11 +402,13 @@ int Interaccao::menuFcompra() {
 	return 1;
 }
 
-int Interaccao::menuFeventos() {
+int Interaccao::menuFeventos(int i) {
 	int opcao;
 	int fim;
 	opcao = intUniformRnd(1, 4);
-
+	if (i > 0) {
+		opcao = i;
+	}
 
 	cout << "\n                            #################";
 	cout << "\n                        #### Fase de Eventos ####";
@@ -511,7 +507,6 @@ int Interaccao::verificaQuant(string qt) {
 	}
 }
 
-
 // recebe do utilizador o tipo de territorio e a quantidade e insere no vector de territorios
 void Interaccao::opcaoAcrescentarTerritorio(string s, int qt){
 
@@ -595,7 +590,6 @@ void Interaccao::opcaoListarTerritorio(char c0) {
 	}
 }
 
-
 void Interaccao::opcaoPesquisarTerritorio(){
 	string pesquisa;
 	int res;                      
@@ -664,7 +658,6 @@ void Interaccao::opcaoConquistarTerritorio(string pesquisa) {
  }else
 	cout << "\n     ****** Territorio nao existe tente outra vez ******\n";
 }
-
 
 void Interaccao::opcaoTomaTerr(string pesquisa) {
 
@@ -944,6 +937,7 @@ void Interaccao::inicio() {
 }
 
 void Interaccao::fim() {
+
 	cout << "\n\n\n                ######   ##   ###     ###\n";
 	Sleep(300);
 	cout << "                ##       ##   ####   ####\n";

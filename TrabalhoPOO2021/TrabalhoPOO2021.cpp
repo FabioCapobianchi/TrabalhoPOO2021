@@ -38,7 +38,7 @@ int main() {
         }
         if (i == 1)
         {
-            i = interaccao.menuFeventos();
+            i = interaccao.menuFeventos(0);
         }
 
     } while (i == 1);

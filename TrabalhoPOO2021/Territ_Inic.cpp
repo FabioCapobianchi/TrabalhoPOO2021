@@ -155,7 +155,11 @@ unsigned int Territ_Inic::getQuantosTerritorios()const {
 
 //Altera o valor da forca militar
 void Territ_Inic::setArmy(int x) {
-    army += x;
+   army += x;
+   if (army < 0) {
+       army = 0;
+   }
+      
 }
 
 // retorna a potencia militar do terrirtorio inicial
