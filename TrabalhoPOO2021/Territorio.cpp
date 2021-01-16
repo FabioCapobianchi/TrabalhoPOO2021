@@ -27,10 +27,10 @@ string Territorio::getAsString()const{
     ostringstream oss;
     oss << "\n ========================"
         << "\n  Territorio: " << tipo        
-        << "\n  resistencia: " << res
-        << "\n  produtos: " << prod 
-        << "\n  ouro:" << ouro
-        << "\n  pontos vitoria: "<< ptsv 
+        << "\n  Resistencia: " << res
+        << "\n  Produtos: " << prod 
+        << "\n  Ouro:" << ouro
+        << "\n  Pontos vitoria: "<< ptsv 
         << "\n ------------------------\n"
         << endl;
     return oss.str();

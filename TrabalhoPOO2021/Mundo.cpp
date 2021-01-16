@@ -23,7 +23,7 @@ Mundo & Mundo::operator=(const Mundo& orig) {
     if(this == &orig){
         return *this;
     }
-    // libertar mem. din. velha
+    // libertar memoria dinamica velha
     for( int i = 0 ; i < territ.size() ; i++){
         delete territ[i];
     }

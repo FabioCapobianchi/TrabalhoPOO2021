@@ -31,7 +31,7 @@ class Territ_Inic {
 public:
   
     Territ_Inic() ;
-    Territ_Inic(const Territ_Inic& orig); // costrutor por copia
+    Territ_Inic(const Territ_Inic& orig); // construtor por copia
     Territ_Inic& operator=(const Territ_Inic& orig); // operador atribuicao
     void eliminaTerrit(string namet);
     virtual ~Territ_Inic(); // destrutor
