@@ -26,6 +26,7 @@ class Territ_Inic {
     int maxarmy ;
     int maxcofre;
     int maxarmaz;
+    int ntec;
  
 public:
   
@@ -41,6 +42,8 @@ public:
     unsigned int getQuantosTerritorios()const;
 
     string getAsString()const;
+    int getTec()const;
+    void setTec();
     int getOuro()const;
     int getProd()const;
     void setCofre(int i);

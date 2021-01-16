@@ -20,6 +20,7 @@ class Interaccao {
 public:
     Interaccao(Mundo * aq, Territ_Inic * empire);
     string getAsString()const;
+    int saida();
     int verificaQuant(string qt);
     int verificaTipo(string t, vector<string> cm);
     int verificaCom(vector<string> cm, string t);
@@ -28,7 +29,7 @@ public:
     void setTurno(int i);
     int getTurno();
     void setEvent(string event);
-    int menu();
+    int menuIni();
     int menuFrecolha();
     int menuFcompra();
     int menuFeventos(int i);

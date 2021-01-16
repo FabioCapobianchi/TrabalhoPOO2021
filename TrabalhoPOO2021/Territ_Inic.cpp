@@ -12,7 +12,7 @@ using namespace std;
 
 
 Territ_Inic::Territ_Inic() : res(9), prod1(1), ouro1(1), pontos(1), cofre(0), armazem(0), drones(false),
-misseis(false), defesas(false), bolsa(true), bankctr(false),maxarmy(3),maxarmaz(3),maxcofre(3)
+misseis(false), defesas(false), bolsa(false), bankctr(false),maxarmy(3),maxarmaz(3),maxcofre(3),ntec(0)
 {
     army = intUniformRnd(0, maxarmy);
 }
@@ -52,7 +52,7 @@ int Territ_Inic::fuiinvadido(int ano) {
     }
     else
     {
-        cout << " !!!! O territorio " << territ_I[x]->getTipo() << " foi conquistado !!!!\n";
+        cout << " !!!! O territorio " << territ_I[x]->getTipo() << " foi conquistado pelo inimigo !!!!\n";
         eliminaTerrit(territ_I[x]->getTipo());
         return 2;
     }
@@ -128,9 +128,9 @@ bool Territ_Inic::conquiTerritorio(Territorio * ter) {
 
 string Territ_Inic::getAsString()const {
     ostringstream oss;
-    oss << "\n ====================="
-        << "\n ==     IMPERIO     =="
-        << "\n =====================\n"
+    oss << "\n #####################"
+        << "\n ##     IMPERIO     ##"
+        << "\n #####################\n"
         << "\n Resitencia: " << res
         << "\n Forca militar: " << army
         << "\n Armazem: " << armazem
@@ -141,7 +141,8 @@ string Territ_Inic::getAsString()const {
         << "\n Defesas Territorias: " << defesas
         << "\n Bolsa de Valores: " << bolsa
         << "\n Banco Central: " << bankctr 
-        << "\n ====================="<< endl << endl;
+        << "\n Numero de Tecnologia adquiridas: " << ntec
+        << "\n #####################"<< endl << endl;
 
     for (Territorio* p : territ_I) {
         oss << p->getAsString();
@@ -294,4 +295,12 @@ int Territ_Inic::getMaxarmazem()const {
 void Territ_Inic::setMaxarmazem(int x) {
 
     maxarmaz += x;
+}
+
+int Territ_Inic::getTec()const {
+    return ntec;
+}
+
+void Territ_Inic::setTec() {
+    ntec += 1;
 }

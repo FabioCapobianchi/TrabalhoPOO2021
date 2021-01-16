@@ -27,7 +27,7 @@ int main() {
  
     do
     {
-        i = interaccao.menu();
+        i = interaccao.menuIni();
         if(i == 1)
         {
             i = interaccao.menuFrecolha(); 
@@ -42,7 +42,6 @@ int main() {
         }
 
     } while (i == 1);
-
 
     delete mundo;
     delete empire;

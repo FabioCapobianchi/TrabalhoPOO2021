@@ -26,7 +26,7 @@ vector<string> comandos = { "carrega","cria","conquista","passa", "maisouro",
 	   "maisprod", "maismilitar", "adquire", "lista", "avanca",
 	   "grava", "ativa", "apaga", "toma", "modifica", "fevento", "sair"};
 
-Interaccao::Interaccao(Mundo * aq, Territ_Inic * empire):ano(1),turno(1){
+Interaccao::Interaccao(Mundo * aq, Territ_Inic * empire):ano(1),turno(1),evento("XXXXX"){
     mundo = aq;
 	imperio = empire;
 }
@@ -68,18 +68,20 @@ void Interaccao::setEvent(string event) {
 	evento = event;
 }
 
-int Interaccao::menu() {
+int Interaccao::menuIni() {
 
-	string cmdo,cmd1,tp,tecterr,tecaux;
+	string cmdo,cmd1,tp,tecterr,tecaux,eventn;
 	char c;
 	int opcao = -1;
 	int nalet = 0;
 	int qut = 0;
 
+	cout << getAsString();
+
 	cout << "\n\n       #############################################";
 	cout <<  "\n   #### Fase configuracao //conquista//passa//lista ####";
 	cout <<  "\n       #############################################\n\n";
-	Sleep(3000);
+	Sleep(2000);
 	
 	do {
 		cout << "\n\n Digite um comando >>>> : \n";
@@ -87,7 +89,22 @@ int Interaccao::menu() {
 		getline(cin, cmdo);
 		istringstream iss(cmdo);
 		iss >> cmd1;
-			if (cmd1 == "cria") {
+			
+		if (cmd1 == "sair") {
+			opcao = 16;
+		}else
+		if (cmd1 == "lista") {
+			opcao = 8;
+			}else
+			if (cmd1 == "passa") {
+				opcao = 3;
+			}
+			else
+				if (cmd1 == "carrega") {
+					opcao = 0;
+				}
+				else
+		if (cmd1 == "cria") {
 				iss >> tp >> qut;
 				if (!iss) {
 					cout << "\n !!!! Faltam parametros para o comando cria !!!! \n";
@@ -150,9 +167,66 @@ int Interaccao::menu() {
 					opcao = 5;
 				}
 			}
-		}else {
-			opcao = verificaCom(comandos, cmdo);//Verifica se o comando existe ou foi escrito corretamente
+		} else if (cmd1 == "fevento") {
+				  iss >> tp ;
+				  if (!iss) {
+					  cout << "\n     !!!! Faltam parametros para o comando fevento !!!! \n";
+					  cout << "\n               !!!! Exemplo fevento <tipo> !!!! \n";
+					  opcao = 5;
+				
+				  } else if (tp == "invasao") {
+					  invasao();
+					  setEvent("Invasao");
+						  opcao = 5;
+                    
+				  }
+				  else if (tp == "recurso") {
+					  iss >> eventn;
+					  if (!iss) {
+						  cout << "\n     !!!! Faltam parametros para o comando fevento !!!! \n";
+						  cout << "\n               !!!! Exemplo fevento <tipo> !!!! \n";
+						  opcao = 5;
+
+					  }if (eventn == "abandonado") {
+						  recursoabandonado();
+						  setEvent("Recurso Abandonado");
+						  opcao = 5;
+					  }
+				  }
+				  else if (tp == "alianca") {
+					  iss >> eventn;
+					  if (!iss) {
+						  cout << "\n     !!!! Faltam parametros para o comando fevento !!!! \n";
+						  cout << "\n               !!!! Exemplo fevento <tipo> !!!! \n";
+						  opcao = 5;
+
+					  }if (eventn == "diplomatica") {
+						  alianca();
+						  setEvent("Alianca Diplomatica");
+						  opcao = 5;
+					  }
+				  }
+				  else if (tp == "sem") {
+					  iss >> eventn;
+					  if (!iss) {
+						  cout << "\n     !!!! Faltam parametros para o comando fevento !!!! \n";
+						  cout << "\n               !!!! Exemplo fevento <tipo> !!!! \n";
+						  opcao = 5;
+
+					  }if (eventn == "evento") {
+						  cout << "\n    !!!! Nao houve nenhum evento !!!!\n";
+						  setEvent("Sem Evento");
+						  opcao = 5;
+					  }
+				  }
+				  
 		}
+		else
+			  {
+				  opcao = 5;
+			  }
+
+
 
 
 		switch (opcao) {
@@ -176,7 +250,7 @@ int Interaccao::menu() {
 		break;
 		case 16: // sair
 		{   
-			
+			saida();
 			return 0;
 		}
 		break;
@@ -233,6 +307,7 @@ int Interaccao::menuFrecolha() {
 					opcao = 6;
 				}
 				else if (aux1 == "sair") {
+					saida();
 					return 0;
 				
 				}
@@ -275,8 +350,8 @@ int Interaccao::menuFrecolha() {
 	else
 	{
 		cout << "\n     !!!! Nao possui a Bolsa de Valores para efetuar trocas !!!!\n";
-		cout << "\n\n     ##########  Fim da fase de recolha  ##########\n";
-		cout <<   "\n          ####################################\n\n";
+		cout << "\n\n            ##########  Fim da fase de recolha  ##########";
+		cout <<   "\n                 ####################################\n\n";
 	}
 	return 1;
 }
@@ -315,6 +390,7 @@ int Interaccao::menuFcompra() {
 			opcao = 17;
 		}
 		if (cmd1 == "sair") {
+			saida();
 			return 0;
 			
 		}
@@ -410,9 +486,9 @@ int Interaccao::menuFeventos(int i) {
 		opcao = i;
 	}
 
-	cout << "\n                            #################";
-	cout << "\n                        #### Fase de Eventos ####";
-	cout << "\n                            #################\n\n";
+	cout << "\n                               #################";
+	cout << "\n                           #### Fase de Eventos ####";
+	cout << "\n                               #################\n\n";
 	Sleep(3000);
 
 	switch (opcao) {
@@ -428,8 +504,9 @@ int Interaccao::menuFeventos(int i) {
 		if (fim == 0) {
 			cout << "\n           !!!! O imperio nao possui territorios para ser conquistados !!!!\n";
 			cout << "\n         ******************* O IMPERIO foi destruido ************************\n";
+			saida();
 			return 0;
-			exit(0);
+			
 		}
 	}
 	break;
@@ -453,7 +530,7 @@ int Interaccao::menuFeventos(int i) {
 		setTurno(1);
 	}
 	if (getTurno() == 6 && getAno() == 2) {
-		//funcao de saida
+		saida();
 		return 0;
 	}
 	
@@ -470,10 +547,12 @@ void Interaccao::opcaoRecolha() {
 
 string Interaccao::getAsString()const {
     ostringstream oss;
-	oss << "\n ANO: " << ano
-		<< "\n Turno: " << turno
-		<< "\n Ultimo evento ocorrido : " << evento << endl;
-
+	oss << "\n\n            ####################################"
+		<< "\n            ## ANO: " << ano << "                         ##" 
+		<< "\n            ## Turno: " << turno  << "                       ##"
+		<< "\n            ## Ultimo evento ocorrido : " << evento << " ##"
+		<< "\n            ## Ultimo numero aleatorio : " << armyale << "    ##"
+	    << "\n            ####################################\n" << endl;
     return oss.str();
 }
 
@@ -753,6 +832,7 @@ int Interaccao::opcaoMaismilitar() {
 			imperio->setCofre(-1);
 			imperio->setArmazem(-1);
 			imperio->setArmy(1);
+			
 			cout << "\n #### Foi adicionada uma unidade militar ####\n";
 			return 1;
 		}
@@ -771,10 +851,10 @@ int Interaccao::opcaoMaismilitar() {
 
 }
 
-
 int Interaccao::opcaoAdquireDrone() {
 		if (imperio->getCofre() >= 3 ) {
 			imperio->setDrones();
+			imperio->setTec();
 			return 1;
 		}
 		else
@@ -787,6 +867,7 @@ int Interaccao::opcaoAdquireDrone() {
 int Interaccao::opcaoAdquireMissil() {
 	if (imperio->getCofre() >= 4) {
 		imperio->setMisseis();
+		imperio->setTec();
 		return 1;
 	}
 	else
@@ -799,6 +880,7 @@ int Interaccao::opcaoAdquireMissil() {
 int Interaccao::opcaoAdquireDefesa() {
 	if (imperio->getCofre() >= 4) {
 		imperio->setDefesas();
+		imperio->setTec();
 		return 1;
 	}
 	else
@@ -811,6 +893,7 @@ int Interaccao::opcaoAdquireDefesa() {
 int Interaccao::opcaoAdquireBolsa() {
 	if (imperio->getCofre() >= 2) {
 		imperio->setBolsa();
+		imperio->setTec();
 		return 1;
 	}
 	else
@@ -826,6 +909,7 @@ int Interaccao::opcaoAdquireBanco() {
 
 		if (imperio->getMaxcofre() < 5 || imperio->getMaxarmazem() < 5) {
 			imperio->setBankctr();
+			imperio->setTec();
 			return 1;
 		}
 		else
@@ -839,7 +923,7 @@ int Interaccao::opcaoAdquireBanco() {
 }
 
 void Interaccao::recursoabandonado() {
-	cout << "\n     #### As tropas emcontraram um recurso abandonado ####\n";
+	        cout << "\n              #### As tropas emcontraram um recurso abandonado ####\n";
 	if (getAno() == 1) {
 		if (imperio->getArmazem() < imperio->getMaxarmazem()) {
 			imperio->setArmazem(1);
@@ -876,8 +960,8 @@ int Interaccao::alianca() {
 		cout << "\n   !!!! Forca Militar mais uma unidade \n\n";
 		return 1;
 	}
-	cout << "\n          **** Foi feita uma Alianca Militar  ****\n";
-	cout << "\n   **** Mas a Forca Militar nao suporta mais unidades ****\n\n";
+	cout << "\n                **** Foi feita uma Alianca Militar  ****\n";
+	cout << "\n         **** Mas a Forca Militar nao suporta mais unidades ****\n\n";
 	return 0;
 }
 
@@ -920,6 +1004,27 @@ int Interaccao::opcaoModificaProd(){
 		   return 0;
 }
 
+int  Interaccao::saida() {
+
+	    cout << "\n                                        !!!! FIM DO JOGO !!!!\n";
+	cout << getAsString() << endl;
+	if (imperio->getTec() == 5) {
+		imperio->setPontos(6);
+		cout << "\n                  !!!! O Imperio recebeu o bonus cientifico por possuir 5 tecnologias !!!!\n";
+	}
+	else
+	{
+		imperio->setPontos(imperio->getTec());
+		cout << "\n           !!!! O Imperio recebeu "<< imperio->getTec() << " pontos por tecnologias adquiridas !!!!\n";
+	}
+	if (mundo->getQuantosTerritorios() == 0 && imperio->getQuantosTerritorios() > 0) {
+		imperio->setPontos(3);
+		cout << "\n !!!! O Imperio recebeu o bonus \"IMPERADOR SUPREMO\" por ter conquistado todos os territorios do mundo !!!!\n";
+	}
+	cout << imperio->getAsString();
+	return 0;
+}
+
 void Interaccao::inicio() {
 	
 	cout << endl;
@@ -957,72 +1062,72 @@ void Interaccao::animacao(int vd) {
 	cout << ">===>                                  ###  ###  ###\n";
 	cout << "                                       ###  ###  ###\n";
 	cout << "                                       #############\n";
-	cout << "                                       #############\n";
-	cout << "                                       #############\n";
+	cout << "                                       #####   #####\n";
+	cout << "                                       #####   #####\n";
 	Sleep(800);
 	system("cls");
 	cout << "\n";
 	cout << "     >===>                             ###  ###  ###\n";
 	cout << "                                       ###  ###  ###\n";
 	cout << "                                       #############\n";
-	cout << "                                       #############\n";
-	cout << "                                       #############\n";
+	cout << "                                       #####   #####\n";
+	cout << "                                       #####   #####\n";
 	Sleep(800);
 	system("cls");
 	cout << "\n";
 	cout << "          >===>                        ###  ###  ###\n";
 	cout << "                                       ###  ###  ###\n";
 	cout << "                                       #############\n";
-	cout << "                                       #############\n";
-	cout << "                                       #############\n";
+	cout << "                                       #####   #####\n";
+	cout << "                                       #####   #####\n";
 	Sleep(800);
 	system("cls");
 	cout << "\n";
 	cout << "                >===>                  ###  ###  ###\n";
 	cout << "                                       ###  ###  ###\n";
 	cout << "                                       #############\n";
-	cout << "                                       #############\n";
-	cout << "                                       #############\n";
+	cout << "                                       #####   #####\n";
+	cout << "                                       #####   #####\n";
 	Sleep(800);
 	system("cls");
 	cout << "\n";
 	cout << "                     >===>             ###  ###  ###\n";
 	cout << "                                       ###  ###  ###\n";
 	cout << "                                       #############\n";
-	cout << "                                       #############\n";
-	cout << "                                       #############\n";
+	cout << "                                       #####   #####\n";
+	cout << "                                       #####   #####\n";
 	Sleep(800);
 	system("cls");
 	cout << "\n";
 	cout << "                                       ###  ###  ###\n";
 	cout << "                         >===>         ###  ###  ###\n";
 	cout << "                                       #############\n";
-	cout << "                                       #############\n";
-	cout << "                                       #############\n";
+	cout << "                                       #####   #####\n";
+	cout << "                                       #####   #####\n";
 	Sleep(800);
 	system("cls");
 	cout << "\n";
 	cout << "                                       ###  ###  ###\n";
 	cout << "                                       ###  ###  ###\n";
 	cout << "                               >===>   #############\n";
-	cout << "                                       #############\n";
-	cout << "                                       #############\n";
+	cout << "                                       #####   #####\n";
+	cout << "                                       #####   #####\n";
 	Sleep(800);
 	system("cls");
 	cout << "\n";
 	cout << "                                       ###  ###  ###\n";
 	cout << "                                       ###  ###  ###\n";
 	cout << "                                       #############\n";
-	cout << "                                   >===#############\n";
-	cout << "                                       #############\n";
+	cout << "                                   >===#####   #####\n";
+	cout << "                                       #####   #####\n";
 	if (vd == 1) {
 		Sleep(800);
 		system("cls");
 		cout << "                                                 ###\n";
 		cout << "                                            ###  ###\n";
-		cout << "                                             ### ###\n";
-		cout << "                                          # ########\n";
-		cout << "                               #   # #  ############\n";
+		cout << "                                           ##### ###\n";
+		cout << "                                             #######\n";
+		cout << "                               #   # #  ##   #######\n";
 	}
 	if (vd == 0) {
 		Sleep(800);
@@ -1031,7 +1136,7 @@ void Interaccao::animacao(int vd) {
 		cout << "                                       ###  ###  ###\n";
 		cout << "                                       ###  ###  ###\n";
 		cout << "                                       #############\n";
-		cout << "                                       #############\n";
-		cout << "                                       #############\n";
+		cout << "                                       #####   #####\n";
+		cout << "                                       #####   #####\n";
 	}
 }
