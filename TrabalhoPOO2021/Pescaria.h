@@ -22,8 +22,6 @@ class Pescaria :public Territorio {
 public:
     Pescaria(string tipo);
     string criaNome();
-
-    //void alimentar(int quant, Mundo* mundo) override;
     Territorio* duplica()const override;
 };
 

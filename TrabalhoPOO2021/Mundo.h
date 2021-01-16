@@ -10,8 +10,7 @@ class Territorio;
 
 class Mundo {
     vector<Territorio *> territ;
-	/*int pesquisaTerritorio(int numSerie)const;
-	void eliminaMortos();*/
+	
 public:
     
     Mundo() = default;

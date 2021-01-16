@@ -2,7 +2,6 @@
 #include "Mina.h"
 #include "Mundo.h"
 
-//int Mina::sequencia = 1;
 int Idmine = 1;
 char undmine = '_';
 string mine;
@@ -21,18 +20,6 @@ string Mina::criaNome() {
 Mina::Mina(string tipo) :Territorio(criaNome(), 5, 0, 1, 1) {
 
 }
-
-//void Mina::alimentar(int quant, Mundo* mundo) {
-//    if (quant <= 0 || mundo == nullptr) {
-//        return;
-//    }
-//    aumentaPeso(quant);
-//    if (getPeso() > LIMITE_PESO) {
-//        //mundo->eliminaTerritorio(getNumSerie());
-//        setVivo(false);
-//    }
-//}
-
 
 Territorio* Mina::duplica()const {
     return new Mina(*this);

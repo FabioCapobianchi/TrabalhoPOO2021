@@ -13,8 +13,6 @@ class Duna: public Territorio{
 public:
     Duna(string tipo);
     string criaNome();
-    
-   //void alimentar( int quant , Mundo * mundo) override;
     Territorio * duplica()const override;
 };
 

@@ -22,8 +22,6 @@ class Castelo :public Territorio {
 public:
     Castelo(string tipo);
     string criaNome();
-
-    //void alimentar(int quant, Mundo* mundo) override;
     Territorio* duplica()const override;
 };
 

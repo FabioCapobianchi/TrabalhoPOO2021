@@ -125,7 +125,6 @@ bool Territ_Inic::conquiTerritorio(Territorio * ter) {
     return true;
 }
 
-
 string Territ_Inic::getAsString()const {
     ostringstream oss;
     oss << "\n #####################"
@@ -153,7 +152,6 @@ string Territ_Inic::getAsString()const {
 unsigned int Territ_Inic::getQuantosTerritorios()const {
     return territ_I.size();
 }
-
 //Altera o valor da forca militar
 void Territ_Inic::setArmy(int x) {
    army += x;
@@ -162,7 +160,6 @@ void Territ_Inic::setArmy(int x) {
    }
       
 }
-
 // retorna a potencia militar do terrirtorio inicial
 int Territ_Inic::getArmy()const {
     return army;
@@ -171,6 +168,7 @@ int Territ_Inic::getArmy()const {
 int Territ_Inic::getOuro()const {
     return ouro1;
 }
+
 int Territ_Inic::getProd()const {
     return prod1;
 }
@@ -204,6 +202,7 @@ void Territ_Inic::setDrones(int i) {
         drones = true;
     }
 }
+
 bool Territ_Inic::getDrones()const {
     return drones;
 }
@@ -219,9 +218,11 @@ void Territ_Inic::setMisseis(int i) {
     }
   
 }
+
 bool Territ_Inic::getMisseis()const {
     return misseis;
 }
+
 int Territ_Inic::setDefesas(int i){
     if (i == 0) {
         defesas = true;
@@ -235,9 +236,11 @@ int Territ_Inic::setDefesas(int i){
     }
    
 }
+
 bool Territ_Inic::getDefesa()const{
     return defesas;
 }
+
 void Territ_Inic::setBolsa(int i) {
     if (i == 0) {
         bolsa = true;
@@ -249,9 +252,11 @@ void Territ_Inic::setBolsa(int i) {
     }
    
 }
+
 bool Territ_Inic::getBolsa()const{
     return bolsa;
 }
+
 void Territ_Inic::setBankctr(int i) {
     if (i == 0) {
         bankctr = true;
@@ -265,11 +270,13 @@ void Territ_Inic::setBankctr(int i) {
     }
    
 }
+
 bool Territ_Inic::getBankctr()const {
     
     return bankctr;
 
 }
+
 int Territ_Inic::getMaxarmy()const{
     return maxarmy;
 }
@@ -283,6 +290,7 @@ int Territ_Inic::getMaxcofre()const{
 
     return maxcofre;
 }
+
 void Territ_Inic::setMaxcofre(int x){
 
     maxcofre += x;
@@ -292,6 +300,7 @@ int Territ_Inic::getMaxarmazem()const {
 
     return maxarmaz;
 }
+
 void Territ_Inic::setMaxarmazem(int x) {
 
     maxarmaz += x;
