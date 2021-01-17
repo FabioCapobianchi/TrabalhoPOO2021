@@ -654,9 +654,7 @@ void Interaccao::opcaoListarTerritorio(char c0) {
 
 	if (c0 == 'T') {          //Falta fazer o cout da fase , turno etc!!!!!!!!!!!!!!!!
 		cout << getAsString() << endl;
-		cout << imperio->getAsString() << endl
-			<< " Ultimo numero aleatorio: "
-			<< armyale << endl;
+		cout << imperio->getAsString() << endl;
 			if(mundo->getQuantosTerritorios() == 0) {
 				cout << "\n !!!! Os territorios ainda nao foram criados !!!!\n";
 				cout << " !!!! Utilize o comando <cria> !!!!\n";
