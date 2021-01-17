@@ -47,8 +47,16 @@ int Territorio::getProd()const {
     return prod;
 }
 
+void Territorio::setProd(int i){
+    prod = i;
+}
+
 int Territorio::getOuro()const {
     return ouro;
+}
+
+void Territorio::setOuro(int i){
+    ouro = i;
 }
 
 int Territorio::getptsv()const {

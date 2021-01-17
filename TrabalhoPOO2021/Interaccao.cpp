@@ -108,7 +108,7 @@ int Interaccao::menuIni() {
 				iss >> tp >> qut;
 				if (!iss) {
 					cout << "\n !!!! Faltam parametros para o comando cria !!!! \n";
-					cout << "\n !!!! Exemplo cria duna 2 !!!! \n";
+					cout << "\n !!!! Exemplo <cria> <duna> <2> !!!! \n";
 					opcao = 5;
 				}
 				else {
@@ -119,7 +119,7 @@ int Interaccao::menuIni() {
 				iss >> tp >> tecterr ;
 				if (!iss) {
 					cout << "\n !!!! Faltam parametros para o comando toma !!!! \n";
-					cout << "\n !!!! Exemplo toma tec/terr tipo !!!! \n";
+					cout << "\n !!!! Exemplo <toma> <tec/terr tipo> !!!! \n";
 					opcao = 5;
 				}
 				else
@@ -141,7 +141,7 @@ int Interaccao::menuIni() {
 			iss >> tp ;
 			if (!iss) {
 				cout << "\n !!!! Faltam parametros para o comando conquista !!!! \n";
-				cout << "\n !!!! Exemplo conquista duna_2//castelo_3 !!!! \n";
+				cout << "\n !!!! Exemplo <conquista> <duna_2//castelo_3> !!!! \n";
 				opcao = 5;
 			}
 			else {
@@ -153,7 +153,7 @@ int Interaccao::menuIni() {
 			iss >> tp;
 			if (!iss) {
 				cout << "\n !!!! Faltam parametros para o comando modifica !!!! \n";
-				cout << "\n !!!! Exemplo modifica ouro//prod !!!! \n";
+				cout << "\n !!!! Exemplo <modifica> <ouro//prod> !!!! \n";
 				opcao = 5;
 			}
 			else
@@ -171,7 +171,7 @@ int Interaccao::menuIni() {
 				  iss >> tp ;
 				  if (!iss) {
 					  cout << "\n     !!!! Faltam parametros para o comando fevento !!!! \n";
-					  cout << "\n               !!!! Exemplo fevento <tipo> !!!! \n";
+					  cout << "\n               !!!! Exemplo <fevento> <tipo> !!!! \n";
 					  opcao = 5;
 				
 				  } else if (tp == "invasao") {
@@ -184,7 +184,7 @@ int Interaccao::menuIni() {
 					  iss >> eventn;
 					  if (!iss) {
 						  cout << "\n     !!!! Faltam parametros para o comando fevento !!!! \n";
-						  cout << "\n               !!!! Exemplo fevento <tipo> !!!! \n";
+						  cout << "\n               !!!! Exemplo <fevento> <tipo> !!!! \n";
 						  opcao = 5;
 
 					  }if (eventn == "abandonado") {
@@ -197,7 +197,7 @@ int Interaccao::menuIni() {
 					  iss >> eventn;
 					  if (!iss) {
 						  cout << "\n     !!!! Faltam parametros para o comando fevento !!!! \n";
-						  cout << "\n               !!!! Exemplo fevento <tipo> !!!! \n";
+						  cout << "\n               !!!! Exemplo <fevento> <tipo> !!!! \n";
 						  opcao = 5;
 
 					  }if (eventn == "diplomatica") {
@@ -210,7 +210,7 @@ int Interaccao::menuIni() {
 					  iss >> eventn;
 					  if (!iss) {
 						  cout << "\n     !!!! Faltam parametros para o comando fevento !!!! \n";
-						  cout << "\n               !!!! Exemplo fevento <tipo> !!!! \n";
+						  cout << "\n               !!!! Exemplo <fevento> <tipo> !!!! \n";
 						  opcao = 5;
 
 					  }if (eventn == "evento") {
@@ -284,7 +284,7 @@ int Interaccao::menuFrecolha() {
 		   
 		cout << "\n             ############# Bolsa de Valores#############";
 		cout << "\n         #### Se dispor de recursos pode efetuar trocas ####\n"; 
-		cout << "\n                 #### Digite passar para passar ####\n";
+		cout << "\n                 #### Digite <passa> para passar ####\n";
 		Sleep(1500);
 		do {
 				cout << "\n Digite um comando >>>> :  \n";
@@ -314,6 +314,7 @@ int Interaccao::menuFrecolha() {
 				else
 				{  if(aux1 != "passa")
 					cout << "\n     #### maisouro//maisprod ####\n";
+				opcao = 3;
 				}
 			switch (opcao) {
 
@@ -369,7 +370,7 @@ int Interaccao::menuFcompra() {
 
 	do {
 
-		cout << "\n\n >>>> maismilitar ou adquire <tecnologia>: \n";
+		cout << "\n\n >>>> <maismilitar> ou <adquire> <tecnologia>: \n";
 		fseek(stdin, 0, SEEK_END);
 		getline(cin, cmd);
 		istringstream iss(cmd);
@@ -400,7 +401,7 @@ int Interaccao::menuFcompra() {
 				iss >> tip >> tip1;
 				if (!iss) {
 					cout << "\n     !!!! Faltam parametros para o comando adquire !!!! \n";
-					cout << "\n      !!!! Exemplo adquire misseis teleguiados //banco central !!!! \n\n";
+					cout << "\n      !!!! Exemplo <adquire> <misseis teleguiados //banco central> !!!! \n\n";
 					opcao = 20;
 				}
 				else
@@ -517,7 +518,7 @@ int Interaccao::menuFeventos(int i) {
 	break;
 	case 4:
 	{
-		cout << "\n    !!!! Nao houve nenhum evento !!!!\n";
+		cout << "\n         !!!! Nao houve nenhum evento !!!!\n";
 		setEvent("Sem Evento");
 	}
 	}
@@ -533,7 +534,9 @@ int Interaccao::menuFeventos(int i) {
 		saida();
 		return 0;
 	}
-	
+	imperio->alteraproducao(getAno(),getTurno());
+	mundo->alteraproducao(getAno(), getTurno());
+
 	cout << "\n                             #####################";
 	cout << "\n                         #### Fim fase de Eventos ####";
 	cout << "\n                             #####################\n\n";
@@ -826,7 +829,7 @@ int Interaccao::opcaoMaisouro(){
 int Interaccao::opcaoMaismilitar() {
 
 	if (imperio->getArmy() < imperio->getMaxarmy()) {
-		if (imperio->getCofre() > 0 && imperio->getArmazem() > 0) {
+		if (imperio->getCofre() >= 1 && imperio->getArmazem() >= 1) {
 			imperio->setCofre(-1);
 			imperio->setArmazem(-1);
 			imperio->setArmy(1);
@@ -850,9 +853,11 @@ int Interaccao::opcaoMaismilitar() {
 }
 
 int Interaccao::opcaoAdquireDrone() {
+	if(imperio->getDrones()==false){
 		if (imperio->getCofre() >= 3 ) {
-			imperio->setDrones();
+			imperio->setDrones(0);
 			imperio->setTec();
+			cout << "\n  !!!! Drones adquiridos com sucesso !!!!\n";
 			return 1;
 		}
 		else
@@ -861,11 +866,17 @@ int Interaccao::opcaoAdquireDrone() {
 			return 0;
 		}
 	}
+	cout << "\n !!!! Ja possui essa tecnologia !!!!\n";
+	return 0;
+}
 
 int Interaccao::opcaoAdquireMissil() {
+	if(imperio->getMisseis()==false){
 	if (imperio->getCofre() >= 4) {
-		imperio->setMisseis();
+		imperio->setMisseis(0);
 		imperio->setTec();
+		cout << "\n  !!!! Misseis Teleguiados adquiridos com sucesso !!!!\n";
+		cout << "\n        !!!! Agora ja pode conquistar ilhas !!!!\n";
 		return 1;
 	}
 	else
@@ -873,50 +884,66 @@ int Interaccao::opcaoAdquireMissil() {
 		cout << "\n !!!! Nao possui ouro suficiente para a compra !!!!\n";
 		return 0;
 	}
+ }
+	cout << "\n !!!! Ja possui essa tecnologia !!!!\n";
+	return 0;
 }
 
 int Interaccao::opcaoAdquireDefesa() {
-	if (imperio->getCofre() >= 4) {
-		imperio->setDefesas();
-		imperio->setTec();
-		return 1;
-	}
-	else
-	{
-		cout << "\n !!!! Nao possui ouro suficiente para a compra !!!!\n";
-		return 0;
-	}
-}
-
-int Interaccao::opcaoAdquireBolsa() {
-	if (imperio->getCofre() >= 2) {
-		imperio->setBolsa();
-		imperio->setTec();
-		return 1;
-	}
-	else
-	{
-		cout << "\n !!!! Nao possui ouro suficiente !!!!\n\n";
-		return 0;
-	}
-}
-
-int Interaccao::opcaoAdquireBanco() {
-	if (imperio->getCofre() >= 3) {
-
-
-		if (imperio->getMaxcofre() < 5 || imperio->getMaxarmazem() < 5) {
-			imperio->setBankctr();
+	if (imperio->getDefesa() == false) {
+		if (imperio->getCofre() >= 4) {
+			imperio->setDefesas(0);
 			imperio->setTec();
+			cout << "\n  !!!! Defesas Territoriais adquiridas com sucesso !!!!\n";
 			return 1;
 		}
 		else
 		{
-			cout << "\n !!!! O Banco já se encontra no limite maximo !!!!\n";
+			cout << "\n !!!! Nao possui ouro suficiente para a compra !!!!\n";
 			return 0;
 		}
 	}
-	cout << "\n !!!! Nao possui ouro suficiente !!!!\n\n";
+	cout << "\n !!!! Ja possui essa tecnologia !!!!\n";
+	return 0;
+}
+
+int Interaccao::opcaoAdquireBolsa() {
+	if (imperio->getBolsa() == false) {
+		if (imperio->getCofre() >= 2) {
+			imperio->setBolsa(0);
+			imperio->setTec();
+			cout << "\n  !!!! Bolsa de Valores adquirida com sucesso !!!!\n";
+			return 1;
+		}
+		else
+		{
+			cout << "\n !!!! Nao possui ouro suficiente !!!!\n\n";
+			return 0;
+		}
+	}
+	cout << "\n !!!! Ja possui essa tecnologia !!!!\n";
+	return 0;
+}
+
+int Interaccao::opcaoAdquireBanco() {
+	if (imperio->getBankctr() == false) {
+		if (imperio->getCofre() >= 3) {
+			if (imperio->getMaxcofre() < 5 || imperio->getMaxarmazem() < 5) {
+				imperio->setBankctr(0);
+				imperio->setTec();
+				cout << "\n !!!! Banco Central aduirido com sucesso !!!!\n";
+				return 1;
+			}
+			else
+			{
+				cout << "\n !!!! O Banco Central já se encontra no limite maximo !!!!\n";
+				return 0;
+			}
+		}
+		cout << "\n !!!! Nao possui ouro suficiente !!!!\n\n";
+		return 0;
+	}
+	cout << "\n !!!! Ja possui essa tecnologia !!!!\n";
 	return 0;
 }
 

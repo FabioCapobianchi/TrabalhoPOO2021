@@ -79,3 +79,45 @@ string Mundo::getAsString()const {
 unsigned int Mundo::getQuantosTerritorios()const{
     return territ.size();
 }
+
+string Mundo::mudaNome(string a) {
+    string nova = "";
+    string carater;
+
+    for (unsigned int i = 0; i < a.length() - 1; i++)
+    {
+        carater = a.substr(i, 1);
+        nova += carater;
+
+    }return nova;
+
+}
+
+void Mundo::alteraproducao(int ano, int turno) {
+    string tipo;
+    for (int i = 0; i < territ.size(); i++) {
+        mudaNome(territ[i]->getTipo());
+        if (tipo == "planicie_" && ano == 2) {
+            territ[i]->setProd(2);
+        }
+        else if (tipo == "mina_") {
+            if (turno >= 3) {
+                territ[i]->setOuro(3);
+            }
+            if (turno < 3) {
+                territ[i]->setOuro(1);
+            }
+        }
+        else if (tipo == "castelo_") {
+            if (turno >= 2) {
+                territ[i]->setProd(0);
+            } if (turno < 2) {
+                territ[i]->setProd(3);
+            }
+        }
+        else if (tipo == "pescaria_" && ano == 2) {
+            territ[i]->setProd(4);
+        }
+    }
+
+}

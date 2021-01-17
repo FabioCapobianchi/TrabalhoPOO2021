@@ -19,7 +19,7 @@ string Pescaria::criaNome() {
     return type;
 }
 
-Pescaria::Pescaria(string tipo) :Territorio(criaNome(), 9, 0, 1, 1) {
+Pescaria::Pescaria(string tipo) :Territorio(criaNome(), 9, 2, 0, 1) {
 
 }
 

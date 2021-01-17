@@ -34,7 +34,8 @@ void Territ_Inic::eliminaTerrit(string namet) {
 int Territ_Inic::fuiinvadido(int ano) {
 
     int ale = 0;
-    int x;
+    int x,df=0;
+    cout << "\n       !!!! O Imperio esta a ser atacado !!!!\n";
     if (ano == 1) {
         ale = 2;
     }if (ano == 2) {
@@ -46,8 +47,11 @@ int Territ_Inic::fuiinvadido(int ano) {
     } 
     x = territ_I.size();
     x--;
-    if (territ_I[x]->getRes() > ale) {
-        cout << " !!!! O territorio " << territ_I[x]->getTipo() << " resistiu ao ataque !!!!\n";
+    if (getDefesa() == true) {
+        df = 1;
+    }
+    if ((territ_I[x]->getRes()+df) > ale) {
+        cout << "      !!!! O territorio " << territ_I[x]->getTipo() << " resistiu ao ataque !!!!\n";
         return 1;
     }
     else
@@ -116,6 +120,48 @@ void Territ_Inic::recolheprod() {
     }
 }
 
+void Territ_Inic::alteraproducao(int ano, int turno) {
+    string tipo;
+    for (int i = 0; i < territ_I.size(); i++) {
+        mudaNome(territ_I[i]->getTipo());
+        if ( tipo == "planicie_" && ano == 2) {
+            territ_I[i]->setProd(2);
+        }
+        else if (tipo == "mina_") {
+            if (turno >= 3) {
+                territ_I[i]->setOuro(3);
+           } 
+            if (turno < 3) {
+               territ_I[i]->setOuro(1);
+           }   
+        }
+        else if (tipo == "castelo_") {
+            if (turno >= 2) {
+                territ_I[i]->setProd(0);
+         } if (turno < 2) {
+             territ_I[i]->setProd(3);
+         }
+        }
+        else if (tipo == "pescaria_" && ano == 2) {
+            territ_I[i]->setProd(4);
+        }
+    }
+
+}
+
+string Territ_Inic::mudaNome(string a) {
+    string nova = "";
+    string carater;
+
+    for (unsigned int i = 0; i < a.length() - 1; i++)
+    {
+        carater = a.substr(i, 1);
+        nova += carater;
+
+    }return nova;
+  
+}
+
 bool Territ_Inic::conquiTerritorio(Territorio * ter) {
     Territorio* p = ter;
     if (p == nullptr) {
@@ -174,8 +220,11 @@ int Territ_Inic::getProd()const {
 }
 
 void Territ_Inic::setCofre(int i) {
-    if (cofre < maxcofre)
+    
         cofre += i;
+        if (getCofre() < 0) {
+            cofre = 0;
+        }
 }
 
 int Territ_Inic::getCofre()const {
@@ -183,8 +232,11 @@ int Territ_Inic::getCofre()const {
 }
 
 void Territ_Inic::setArmazem(int i) {
-    if (armazem < maxarmaz)
+    
         armazem += i;
+        if (getArmazem() < 0) {
+            armazem = 0;
+        }
 }
 
 int Territ_Inic::getArmazem()const {
@@ -195,7 +247,7 @@ void Territ_Inic::setDrones(int i) {
     if (i == 0) {
         drones = true;
         maxarmy = 5;
-        ouro1 -= 3;
+        setCofre(-3);
     }
     else
     {
@@ -210,7 +262,7 @@ bool Territ_Inic::getDrones()const {
 void Territ_Inic::setMisseis(int i) {
     if (i == 0) {
         misseis = true;
-        ouro1 -= 4;
+        setCofre(-4);
     }
     else
     {
@@ -226,7 +278,7 @@ bool Territ_Inic::getMisseis()const {
 int Territ_Inic::setDefesas(int i){
     if (i == 0) {
         defesas = true;
-        ouro1 -= 4;
+        setCofre(-4);
         return 1;
     }
     else
@@ -244,7 +296,7 @@ bool Territ_Inic::getDefesa()const{
 void Territ_Inic::setBolsa(int i) {
     if (i == 0) {
         bolsa = true;
-        ouro1 -= 2;
+        setCofre(-2);
     }
     else
     {
@@ -262,7 +314,7 @@ void Territ_Inic::setBankctr(int i) {
         bankctr = true;
         maxcofre = 5;
         maxarmaz = 5;
-        ouro1 -= 3;
+        setCofre(-3);
     }
     else
     {

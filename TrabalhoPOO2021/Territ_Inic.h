@@ -37,6 +37,8 @@ public:
     virtual ~Territ_Inic(); // destrutor
     void recolheprod();
     bool addTerritorio(string tipo);
+    void alteraproducao(int ano, int turno);
+    string mudaNome(string a);
     bool conquiTerritorio(Territorio * ter);
     int fuiinvadido(int ano);
     unsigned int getQuantosTerritorios()const;

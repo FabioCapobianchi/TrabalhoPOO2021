@@ -21,6 +21,8 @@ public:
     bool addTerritorio(string tipo);
     void eliminaTerrit(string namet);
     unsigned int getQuantosTerritorios()const;
+    string mudaNome(string a);
+    void alteraproducao(int ano, int turno);
     
     string getAsString()const;
 };

@@ -23,7 +23,9 @@ public:
     string getTipo() const;
     int getRes()const;
     int getProd()const;
+    void setProd(int i);
     int getOuro()const;
+    void setOuro(int i);
     int getptsv()const;
     virtual ~Territorio(){}
     virtual Territorio * duplica()const = 0;

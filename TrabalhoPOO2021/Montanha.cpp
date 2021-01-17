@@ -17,7 +17,7 @@ string Montanha::criaNome() {
     return type;
 }
 
-Montanha::Montanha(string tipo) :Territorio(criaNome(), 6, 1, 0, 1) {
+Montanha::Montanha(string tipo) :Territorio(criaNome(), 6, 0, 0, 1) {
 
 }
 
