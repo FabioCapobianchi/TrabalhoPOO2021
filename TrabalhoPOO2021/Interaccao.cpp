@@ -175,11 +175,20 @@ int Interaccao::menuIni() {
 					  opcao = 5;
 				
 				  } else if (tp == "invasao") {
-					  invasao();
-					  setEvent("Invasao");
+		
+					  if (invasao() == 0) {
+						  setEvent("Invasao");
+						  cout << "\n           !!!! O imperio nao possui territorios para ser conquistados !!!!\n";
+						  cout << "\n         ******************* O IMPERIO foi destruido ************************\n";
+						  saida();
+						  return 0;
+					  }
+					  else
+					  {
+						  setEvent("Invasao");
 						  opcao = 5;
-                    
-				  }
+					  }                    
+			  }
 				  else if (tp == "recurso") {
 					  iss >> eventn;
 					  if (!iss) {
